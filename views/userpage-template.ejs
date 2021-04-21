@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NotTwitter | User Profile</title>
+  <%- include ('./partials/style') %>
+</head>
+<body>
+  <% if (loggedIn === true) { %>
+    <% let username = userData.user.dataValues.username%>
+    <div class="greeting">
+      <h1>User Profile</h1>
+      <h1>Hello <%= username %></h1>
+    </div>
+    <p>Tweet Something!</p>
+    <form action="/createTweet" method="POST">
+      <textarea name="content" cols="80" rows="10" placeholder="Say what's on your mind..." required></textarea> <br>
+      <input type="submit" value="Submit">
+    </form>
+
+    <hr>
+    <h2>Your Posts</h2>
+    <div class="user-post-container">
+      <% if (tweets) { %>
+        <% for(let t of tweets) { %>
+          <div class="user-posts"><span><b><%=username %> </b>:
+            <%= t.dataValues.content %></span></div>
+        <% } %>
+      <% } %>
+    </div>
+    <hr>
+    <div class="links">
+      <a href="/newsfeed"><button>News Feed</button></a>
+      <a href="/logout"><button>Log out</button></a>
+    </div>
+    <hr>
+  <% } %>
+</body>
+</html>

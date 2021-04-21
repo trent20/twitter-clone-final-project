@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NotTwitter | News Feed</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>NotTwitter!</h1>
+  <h2>Posts</h2>
+  <% if (tweets) { %>
+    <div class="post-container">
+    <%let username = '' %>
+    <% for(let t of tweets) { %>
+      <% username = t.dataValues.User.dataValues.username %>
+      <div class="posts"><span><b><%= username %> </b>:
+        <%= t.dataValues.content %></span>
+      </div>  
+    <% } %>
+    <% let url = `/users/${username}` %>
+    </div>
+
+    <div class="links">
+      <a href= <%=url %> ><button>Profile</button></a>
+    </div>
+  <% } %>
+</body>
+</html>
